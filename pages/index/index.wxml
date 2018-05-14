@@ -1,0 +1,48 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="search" bindtap='goSearch'>
+    <image class="search-icon" mode="aspectFit" src="/images/search_icon.png"></image>
+    <input class="search-input" type="text" placeholder='我想搜索...'/>
+  </view>
+  <view class="banner">
+    <swiper autoplay='true' circular='true'>
+      <swiper-item>
+        <image mode="aspectFill" src="/images/iqiyi.png" class="slide-image"/>
+      </swiper-item>
+      <swiper-item>
+        <image src="/images/iqiyi.png" class="slide-image"/>
+      </swiper-item>
+      <swiper-item>
+        <image src="/images/iqiyi.png" class="slide-image"/>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="course-wrapper">
+    <text class="title">精品课程</text>
+    <text class="change-btn">换一批</text>
+    <view class="course">
+      <block wx:for="{{lists}}" wx:key="{{index}}">
+        <view class="course-item" wx:if="{{(index+1)%3!==0}}">
+          <navigator url="/pages/detail/detail?id=21">
+            <view class="course-cover">
+              <image src="{{basic_url + item.icon}}" mode="aspectFill"></image>
+              <text class="cover-label">{{item.level}}</text>
+            </view>
+            <text class="course-name">{{item.name}}</text>
+          </navigator>
+        </view>
+        <view class="course-item" style="margin-right:0;" wx:else>
+          <navigator url="/pages/detail/detail?id=21">
+            <view class="course-cover">
+              <image src="/images/iqiyi.png" mode="aspectFill"></image>
+              <text class="cover-label">si级</text>
+            </view>
+            <text class="course-name">五天玩转小程序</text>
+          </navigator>
+        </view>
+      </block>
+      <view class="clearfix"></view>
+    </view>
+  </view>
+  <button  open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权</button>
+</view>

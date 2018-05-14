@@ -1,0 +1,40 @@
+/* pages/person/person.wxss */
+.list{
+  padding:0;
+  margin:0;
+}
+.list-item{
+  height:164rpx;
+  display: flex;
+  margin-bottom:30rpx;
+}
+.cover{
+  flex:0 0 134rpx;
+  width:134rpx;
+  height:164rpx;
+}
+.outline{
+  flex:0 0 276rpx;
+  padding-left: 24rpx;
+}
+.title{
+  display: block;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #000000;
+  letter-spacing: 0;
+}
+.time{
+  font-family: PingFangSC-Regular;
+  font-size: 13px;
+  color: #999999;
+  letter-spacing: 0;
+}
+.price{
+  flex: 1;
+  font-family: PingFangSC-Medium;
+  font-size: 30rpx;
+  color: #E56241;
+  letter-spacing: 0;
+  text-align:right;
+}

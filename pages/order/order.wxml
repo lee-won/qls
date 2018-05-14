@@ -1,0 +1,13 @@
+<!--pages/person/person.wxml-->
+<view class="container">
+  <view class="list">
+    <view class="list-item" wx:for="{{[1,2,3,4,5,6]}}" wx:key="{{index}}">
+      <image class="cover"  mode="aspectFill" src="/images/iqiyi.png"></image>
+      <view class="outline">
+        <text class="title">制冷空调系统安装维修工</text>
+        <text class="time">2018年05月.06日</text>
+      </view>
+      <view class="price">付款 ¥1250.00元</view>
+    </view>
+  </view>
+</view>
