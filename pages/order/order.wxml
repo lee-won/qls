@@ -1,13 +1,15 @@
 <!--pages/person/person.wxml-->
 <view class="container">
   <view class="list">
-    <view class="list-item" wx:for="{{[1,2,3,4,5,6]}}" wx:key="{{index}}">
-      <image class="cover"  mode="aspectFill" src="/images/iqiyi.png"></image>
-      <view class="outline">
-        <text class="title">制冷空调系统安装维修工</text>
-        <text class="time">2018年05月.06日</text>
+  <block  wx:for="{{records}}" wx:key="{{index}}">
+      <view class="list-item">
+        <image class="cover"  mode="aspectFill" src="{{basic_url +item.course.icon}}"></image>
+        <view class="outline">
+          <text class="title">{{item.course.name}}</text>
+          <text class="time">{{item.course.buy_time}}</text>
+        </view>
+        <view class="price">付款 ¥{{item.course.price}}.00元</view>
       </view>
-      <view class="price">付款 ¥1250.00元</view>
-    </view>
+    </block>
   </view>
 </view>

@@ -66,6 +66,7 @@
   display: inline-block;
   width:215rpx;
   margin:0 28rpx 24rpx auto;
+  vertical-align: top;
 }
 .course-cover{
    position:relative;

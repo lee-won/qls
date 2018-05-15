@@ -1,25 +1,23 @@
 <view class="container">
   <view class="head">
-    <image class="cover" src="/images/iqiyi.png"></image>
-    <text class="name">数据库应用(Oracle)</text>
-    <text class="level">（四级）</text>
+    <image class="cover" src="{{basic_url + desc.icon}}"></image>
+    <text class="name">{{desc.name}}</text>
+    <text class="level">{{'('+desc.level+')'}}</text>
   </view>
   <view class="content">
-    <text class="outline">《智能楼宇管理员》职业简介 </text>
-    <text class="title">一、职业名称</text>
-    <text class="desc">智能楼宇管理员 </text>
-    <text class="title">二、职业定义</text>
-    <text class="desc">智能楼宇管理员 </text>
-    <text class="title">三、主要工作内容</text>
-    <text class="desc">从事的工作主要包括：（1）楼宇自控（楼宇自动控制系统日常操作与维护，楼宇自动控制系统管理软件配置和编统日常操作与维护，楼宇自动控制系统管理软件配置和编统日常操作与维护，楼宇自动控制系统管理软件配置和编统日常操作与维护，楼宇自动控制系统管理软件配置和编统日常操作与维护，楼宇自动控制系统管理软件配置和编 </text>
+   <rich-text nodes="{{desc.brief}}" bindtap="tap"></rich-text>
   </view>
-  <button bindtap='buy' class="buy-btn">¥180.00  确认购买</button>
+  <button bindtap='buy' class="buy-btn">¥{{desc.price}}.00  确认购买</button>
   <view class="modal" wx:if="{{modalFlag}}">
-    <text>您需绑定手机号才能进行课程购买</text>
-    <input bindinput='bindKeyInput1' class="phone-input" type="number" name="phone" placeholder='请绑定您的手机号' maxlength='11' />
-    <button size="mini" bindtap='getCode'>获取短信验证码</button>
-    <input  bindinput='bindKeyInput2' class="phone-input" type="text" placeholder='获取短信验证码'/>
+    <text class="modal-title">您需绑定手机号才能进行课程购买</text>
+    <view>
+      <input bindinput='bindKeyInput1' class="phone-input" type="number" placeholder='请绑定您的手机号' maxlength='11' />
+      <button size="mini" bindtap='getCode'>获取短信验证码</button>
+    </view>
+    <view>
+      <input  bindinput='bindKeyInput2' class="phone-input" type="text" placeholder='获取短信验证码'/>
+    </view>
     <button size="mini" bindtap='sendData'>提交</button>
     <button size="mini" bindtap='closeModal'>关闭</button>
-  </view>
+  </view> 
 </view>

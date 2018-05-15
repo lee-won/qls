@@ -29,10 +29,21 @@
   top:50%;
   left:50%;
   transform: translate3d(-50%,-50%,0);
-  background:#ccc;
+  background:#ddd;
+  border-radius:10rpx;
   font-size:14px;
   width:90%;
   height:200px;
+  padding:40rpx;
+  box-sizing: border-box;
+}
+.modal-title{
+  display:block;
+  text-align: center;
+  font-family: PingFangSC-Medium;
+  font-size: 32rpx;
+  color: #000000;
+  margin-bottom:20rpx;
 }
 .phone-input{
   border:1px solid #f60;

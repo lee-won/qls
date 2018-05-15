@@ -8,6 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    basic_url:URL.BASIC_URL,
     userInfo: null,
     records: []
   },

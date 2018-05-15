@@ -1,12 +1,13 @@
 const app = getApp()
-var URL = require('../../common/url_config.js')
+const URL = require('../../common/url_config.js')
 Page({
   data: {
     id: '',
     desc: null,
     modalFlag: false,
     phoneNum: '',
-    code: ''
+    code: '',
+    basic_url:URL.BASIC_URL
   },
   onLoad: function(options) {
     var that = this
@@ -47,7 +48,7 @@ Page({
               wx.login({
                 success: (res) => {
                   wx.request({
-                    url: 'http://192.168.50.106:8000/api/article/miniapp/share/',
+                    url: URL.SHARE_URL + app.globalData.token + '/',
                     method: 'post',
                     data:{
                       code: res.code,
@@ -73,37 +74,42 @@ Page({
     this.setData({
       modalFlag: !app.globalData.phone
     })
-   // if (app.globalData.phone) {
+   if (app.globalData.phone) {
       wx.login({
         success: (res) => {
           wx.request({
             url:URL.BUY_URL + '2/' + res.code + '/'+app.globalData.token + '/',
             method: 'post',
             success: function (res) {
-              //if (res.code === 0) {
+              if (res.data.code === 0) {
                 console.log(res)
                 wx.requestPayment({
-                  'timeStamp': res.data.timeStamp,
-                  'nonceStr': res.data.nonceStr,
-                  'package': res.data.package,
-                  'signType': res.data.signType,
-                  'paySign': res.data.paySign,
+                  'timeStamp': res.data.data.timeStamp,
+                  'nonceStr': res.data.data.nonceStr,
+                  'package': res.data.data.package,
+                  'signType': res.data.data.signType,
+                  'paySign': res.data.data.paySign,
                   'success': function (res) {
-                    console.log(res)
+                    console.log(res +'111')
                   },
                   'fail': function (res) {
-                    console.log(res)
+                    console.log(res + '111')
                   }
                 })
-              //}
+              } else {
+                wx.showToast({
+                  title: res.data.msg,
+                  icon: 'none'
+                })
+              }
             }
           })
         }
       })
      
-   // }else{
+   }else{
 
-  //  }
+   }
   },
   closeModal () {
     this.setData({
@@ -128,7 +134,6 @@ Page({
         if (res.data.code === 0) {
           wx.showToast({
             title: '验证码已发送到您的手机，请注意查收',
-            icon: 'success',
             duration: 2000
           })
         }
@@ -140,7 +145,10 @@ Page({
       url: URL.SAVE_PHONE_URL + this.data.phoneNum + '/'+ this.data.code + '/' + app.globalData.token + '/',
       method: 'GET',
       success: (res) => {
-        console.log(res)
+        app.globalData.phone = this.data.phoneNum
+        this.setData({
+          modalFlag: false
+        })
       }
     })
   }
