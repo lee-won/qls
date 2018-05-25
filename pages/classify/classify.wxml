@@ -1,0 +1,34 @@
+<!--pages/classify/classify.wxml-->
+<view class="container">
+  <view class="wrapper">
+    <view class="left">
+      <view class="left-wrapper">
+        <block wx:for="{{data}}"  wx:key="{{index}}">
+          <view class="menu-item {{type==='classify' + index ? 'active' : ''}}" bindtap='setCurrent' data-type="classify{{index}}">
+            <text class="menu-item-text">{{item.type_name}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+    <view class="right">
+      <scroll-view class="right-wrapper" scroll-y="true" scroll-with-animation="true" scroll-into-view="{{type}}">
+        <block wx:for="{{data}}" wx:key="{{index}}">
+          <view class="classify-item" id="classify{{index}}">
+            <text class="title">{{item.type_name}}</text>
+            <view class="content">
+              <block wx:for="{{item.courses}}"  wx:key="{{index}}">
+                <view class="course-item {{(index+1) % 3 !== 0 ? '' : 'no-margin-right'}}">
+                 <navigator url="/pages/detail/detail?id={{item.id}}">
+                    <image class="course-cover" src="{{basic_url + item.icon}}" mode='aspectFill'></image>
+                    <text class="course-name">{{item.name + index}}</text>
+                  </navigator>
+                </view>
+              </block>
+              <view class="clearfix"></view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>

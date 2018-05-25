@@ -1,15 +1,19 @@
 <!--pages/person/person.wxml-->
 <view class="container">
   <view class="list">
-  <block  wx:for="{{records}}" wx:key="{{index}}">
-      <view class="list-item">
-        <image class="cover"  mode="aspectFill" src="{{basic_url +item.course.icon}}"></image>
-        <view class="outline">
-          <text class="title">{{item.course.name}}</text>
-          <text class="time">{{item.course.buy_time}}</text>
-        </view>
-        <view class="price">付款 ¥{{item.course.price}}.00元</view>
-      </view>
+    <block  wx:for="{{records}}" wx:key="{{index}}">
+      <navigator  url="{{'/pages/detail/detail?id='+ item.course.id}}">
+          <view class="list-item">
+            <image class="cover"  mode="aspectFill" src="{{basic_url + item.course.icon}}"></image>
+            <view class="outline">
+              <text class="title">{{item.course.name}}</text>
+              <text class="time">{{item.course.buy_time}}</text>
+              <text class="level" wx:if="{{item.level}}">课程等级：{{item.level}}</text>
+            </view>
+            <view class="price" wx:if="{{!item.status}}">已付款 ¥{{item.fee}}.00元</view>
+            <view class="price" wx:else>待付款</view>
+          </view>
+      </navigator>  
     </block>
   </view>
 </view>

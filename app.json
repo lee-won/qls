@@ -4,6 +4,9 @@
     "pages/detail/detail",
     "pages/search/search",
     "pages/order/order",
+    "pages/notice/notice",
+    "pages/classify/classify",
+    "pages/list/list",
     "pages/logs/logs"
   ],
   "tabBar": {
@@ -18,10 +21,22 @@
         "text": "首页"
       },
       {
+        "pagePath": "pages/classify/classify",
+        "iconPath": "/images/classify.png",
+        "selectedIconPath": "/images/classify_a.png",
+        "text": "分类"
+      },
+      {
         "pagePath": "pages/order/order",
         "iconPath": "/images/order.png",
         "selectedIconPath": "/images/order_a.png",
         "text": "订单"
+      },
+      {
+        "pagePath": "pages/notice/notice",
+        "iconPath": "/images/notice.png",
+        "selectedIconPath": "/images/notice_a.png",
+        "text": "公告"
       }
     ]
   },

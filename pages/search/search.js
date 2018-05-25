@@ -4,6 +4,8 @@ Page({
   data: {
     searchValue: '',
     page: 1,
+    totalPage: '',
+    loadFlag: false,
     search_history:[],
     courses: null,
     recommends: [],
@@ -14,7 +16,6 @@ Page({
     wx.getStorage({
       key: 'searchHistory',
       success: function (res) {
-        console.log(res)
         that.setData({
           search_history: res.data
         })
@@ -50,12 +51,14 @@ Page({
   search: function() {
     var that = this
     wx.request({
-      url: URL.LIST_URL + that.data.searchValue +'/'+ that.data.page + '/' + app.globalData.token + '/',
+      url: URL.MORE_URL + that.data.searchValue +'/'+ that.data.page + '/' + app.globalData.token + '/',
       method: 'get',
       success: (res) => {
+        console.log(res.data)
         if (res.data.course.length > 0) {
           that.setData({
-            courses: res.data.course
+            courses: res.data.course,
+            totalPage: res.data.pages
           })
         } else {
           that.setData({
@@ -66,7 +69,6 @@ Page({
         if (oldHistory.indexOf(that.data.searchValue) === -1){
           oldHistory.unshift(that.data.searchValue)
           if (oldHistory.length > 8) {
-            console.log(oldHistory.length)
             oldHistory = oldHistory.slice(0, 8)
           }
           that.setData({
@@ -81,15 +83,18 @@ Page({
     })
   },
   historySearch: function(e) {
-    console.log(e)
     var that = this
     wx.request({
-      url: URL.LIST_URL + e.target.dataset.history + '/' + that.data.page + '/' + app.globalData.token + '/',
+      url: URL.MORE_URL + e.target.dataset.history + '/' + that.data.page + '/' + app.globalData.token + '/',
       method: 'get',
       success: (res) => {
+        that.setData({
+          searchValue: e.target.dataset.history
+        })
         if (res.data.course.length > 0) {
           that.setData({
-            courses: res.data.course
+            courses: res.data.course,
+            totalPage: res.data.pages
           })
         } else {
           that.setData({
@@ -98,5 +103,30 @@ Page({
         }
       }
     })
-  }
+  },
+  loadMore: function() {
+    console.log(this.data.totalPage)
+    if (this.data.loadFlag) {
+      return
+    }
+    var that = this
+    that.data.page++;
+    if (that.data.page <= that.data.totalPage) {
+      that.setData({
+        loadFlag: true
+      })
+      setTimeout(() => {
+        wx.request({
+          url: URL.MORE_URL + that.data.searchValue + '/' + that.data.page + '/' + app.globalData.token + '/',
+          method: 'get',
+          success: function (res) {
+            that.setData({
+              courses: that.data.courses.concat(res.data.course),
+              loadFlag: false
+            })
+          }
+        })
+      }, 2000)
+    }
+  }  
 })

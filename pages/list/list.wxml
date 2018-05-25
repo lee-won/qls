@@ -1,0 +1,33 @@
+<!--pages/list/list.wxml-->
+<view class="container">
+  <view class="search" bindtap='goSearch'>
+    <image class="search-icon" mode="aspectFit" src="/images/search_icon.png"></image>
+    <text class="search-input">我想搜索...</text>
+  </view>
+  <scroll-view class="scroll-wrapper" scroll-y="true" bindscrolltolower="loadMore">
+    <view class="course">
+      <block wx:for="{{courses}}" wx:key="{{index}}">
+        <view class="course-item" wx:if="{{(index+1)%3!==0}}">
+          <navigator url="{{'/pages/detail/detail?id='+ item.id}}">
+            <view class="course-cover">
+              <image src="{{basic_url + item.icon}}" mode="aspectFill"></image>
+            </view>
+            <text class="course-name">{{item.name}}</text>
+          </navigator>
+        </view>
+        <view class="course-item" style="margin-right:0;" wx:else>
+          <navigator url="{{'/pages/detail/detail?id='+ item.id}}">
+            <view class="course-cover">
+              <image src="{{basic_url + item.icon}}" mode="aspectFill"></image>
+            </view>
+            <text class="course-name">{{item.name}}</text>
+          </navigator>
+        </view>
+      </block>
+      <view class="clearfix"></view>
+      <view class="loading">
+      <image class="loading-icon"  wx:if="{{loadFlag}}" src="/images/loading.gif"></image>
+    </view>
+    </view>
+  </scroll-view>
+</view>

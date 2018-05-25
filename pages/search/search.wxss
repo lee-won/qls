@@ -1,3 +1,8 @@
+.container {
+  height: 100%;
+  box-sizing: border-box;
+  padding:0 24rpx;
+} 
 .search{
   display: flex;
   height:84rpx;
@@ -118,16 +123,24 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
+.scroll-wrapper{
+  position:fixed;
+  top:0;
+  bottom:0;
+  width:100%;
+}
 .list{
-  padding:0;
-  margin:0;
-  margin-top:40rpx;
+  position:fixed;
+  top:120rpx;
+  bottom:0;
+  width:100%;
 }
 .list-item{
+  width:702rpx;
   height:164rpx;
   display: flex;
   margin-bottom:30rpx;
+  box-sizing:border-box;
 }
 .cover{
   flex:0 0 134rpx;
@@ -136,7 +149,9 @@
 }
 .outline{
   flex:1;
+  display:block;
   padding-left: 24rpx;
+  box-sizing:border-box;
 }
 .list .title{
   display: block;
@@ -149,4 +164,22 @@
   font-family: PingFangSC-Regular;
   font-size:28rpx;
   color:#f60;
+}
+.no-search-result{
+  display: block;
+  font-family: PingFangSC-Regular;
+  font-size: 30rpx;
+  color: #000000;
+  letter-spacing: 0;
+  margin-top:200rpx;
+  text-align:center;
+}
+.loading{
+  text-align: center;
+  height:80rpx;
+  width:702rpx;
+}
+.loading-icon{
+  width:14px;
+  height:14px;
 }

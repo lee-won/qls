@@ -1,13 +1,14 @@
 //index.js
 const app = getApp()
 var URL = require('../../common/url_config.js')
+var Fetch = require('../../common/fetch.js')
 Page({
   data: {
-    lists: [],
+    best: [],
+    hot: [],
+    lack: [],
     images: [],
     basic_url: URL.BASIC_URL,
-    page: 1,
-    motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
@@ -43,20 +44,18 @@ Page({
         }
       })
     }
-    // 获取首页信息
-    var that = this
-    setTimeout(() => {
-      wx.request({
-        url: URL.LIST_URL + that.data.page + '/' + app.globalData.token +'/',
-        method: 'get',
-        success: function (res) {
-          that.setData({
-            lists: res.data.course,
-            images:res.data.indexImages
-          })
-        }
+    setTimeout(()=>{
+      // 获取首页信
+      var that = this
+      Fetch(URL.INDEX_URL + app.globalData.token + '/', 'get', null, (res) => {
+        this.setData({
+          best: res.data.best,
+          hot: res.data.hot,
+          lack: res.data.lack,
+          images:res.data.indexImages
+        })
       })
-    },2000)
+    }, 2000)
   },
   getUserInfo: function (e) {
     console.log(e)
@@ -78,6 +77,20 @@ Page({
   goSearch: function(e) {
     wx.navigateTo({
       url: '../search/search'
+    })
+  },
+  changeCourse: function() {
+    var that = this
+    that.data.page++;
+    wx.request({
+      url: URL.LIST_URL + that.data.page + '/' + app.globalData.token + '/',
+      method: 'get',
+      success: function (res) {
+        that.setData({
+          lists: res.data.course,
+          images: res.data.indexImages
+        })
+      }
     })
   }
 })

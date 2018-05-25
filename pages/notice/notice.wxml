@@ -1,0 +1,19 @@
+<!--pages/notice/notice.wxml-->
+<view class="container">
+  <view style="text-align:center;">
+    <image class="logo" src="/images/qls.jpg"></image>
+  </view>
+  <text class="text">勤联社——上海市地方教育附加专项资金职工职业培训（简称“政府补贴培训”）服务一站式咨询服务平台。从政策咨询，到培训服务对接，以及资金申报支持一站式服务平台。</text>
+  <text class="text">上海地区企业员工培训福利开始申请啦！！！上海的企业，你们还在为公司员工能力不足素质不高而焦急无奈吗？你们还在急于给员工培训却又担心费用高效果差吗？你们还在面临着耗费大量人力物力却只能申请到极少补贴的尴尬局面吗？</text>
+<text class="text">只要您填写下面的申请表单，我们的咨询老师会及时与您详细提供适合您公司的免费培训方案，您会有着意外的收获哦！</text>
+
+<text class="title">相关政策文档</text>
+<view class="download">
+  <block wx:for="{{files}}" wx:key="index">
+    <view data-type="{{item.type}}" data-url="{{item.url}}" class="file-item" bindtap='download'>
+      <image class="type-pic" src="/images/{{item.type}}.png"></image>
+      <text class="name">{{item.name}}</text>
+    </view>  
+  </block>
+</view>
+</view>

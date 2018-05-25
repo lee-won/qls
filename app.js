@@ -21,8 +21,8 @@ App({
           }
         })
       }
-    }),
-
+    })
+    /*
     wx.getSetting({
       success: res => {
         console.log(res.authSetting['scope.userInfo'])
@@ -42,6 +42,7 @@ App({
         }
       }
     })
+     */
   },
   globalData: {
     userInfo: null,

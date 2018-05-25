@@ -1,4 +1,9 @@
 /* pages/person/person.wxss */
+.container{
+  height:100%;
+  padding:0 24rpx;
+  box-sizing: border-box;
+}
 .list{
   padding:0;
   margin:0;
@@ -22,12 +27,27 @@
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
   color: #000000;
+  margin-bottom:10rpx;
   letter-spacing: 0;
+  word-break: break-all;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .time{
+  display: block;
   font-family: PingFangSC-Regular;
   font-size: 13px;
   color: #999999;
+  margin-bottom:10rpx;
+  letter-spacing: 0;
+}
+.level{
+  display: block;
+  font-family: PingFangSC-Regular;
+  font-size: 13px;
+  color: #f60;
   letter-spacing: 0;
 }
 .price{

@@ -2,22 +2,36 @@
   <view class="head">
     <image class="cover" src="{{basic_url + desc.icon}}"></image>
     <text class="name">{{desc.name}}</text>
-    <text class="level">{{'('+desc.level+')'}}</text>
   </view>
   <view class="content">
-   <rich-text nodes="{{desc.brief}}" bindtap="tap"></rich-text>
+    <rich-text nodes="{{desc.brief}}" bindtap="tap"></rich-text>
+    <view>
+      <block wx:for="{{desc.level}}" wx:key="{{index}}">
+        <view class="file" bindtap='downfile' data-url="{{item.attachment}}">相关文档下载<text wx:if="{{desc.level.length > 0}}">({{item.level}})</text></view>
+      </block>
+    </view>
   </view>
-  <button bindtap='buy' class="buy-btn">¥{{desc.price}}.00  确认购买</button>
+  <view class="select-level">
+    <text class="buy-tip">请选择您需购买的课程等级：</text>
+    <block wx:for="{{desc.level}}" wx:key="{{index}}">
+      <button size="mini" class="level-btn {{item.level === selectLevel ? 'active': ''}}" data-level="{{item.level}}" bindtap='setLevel'>{{item.level}}</button>
+    </block>
+  </view>
+  <button bindtap='buy' class="buy-btn">¥{{desc.price}}.00  确认报名</button>
   <view class="modal" wx:if="{{modalFlag}}">
-    <text class="modal-title">您需绑定手机号才能进行课程购买</text>
-    <view>
-      <input bindinput='bindKeyInput1' class="phone-input" type="number" placeholder='请绑定您的手机号' maxlength='11' />
-      <button size="mini" bindtap='getCode'>获取短信验证码</button>
+    <view class="modal-content">
+      <text class="modal-title">绑定手机号</text>
+      <view class="section">
+        <image src="/images/phone_icon.png" class="icon"></image>
+        <input bindinput='bindKeyInput1' class="phone-input" type="number" placeholder='请输入您的手机号' maxlength='11'/>
+      </view>
+      <view class="section">
+        <image src="/images/code_icon.png" class="icon"></image>
+        <input  bindinput='bindKeyInput2' class="phone-input" type="text" placeholder='请输入短信验证码'/>
+        <button class="code_btn" size="mini" bindtap='getCode'>{{codeBtnText}}</button>
+      </view>
+      <button class="bind_btn" bindtap='sendData'>立即绑定</button>
+      <image class="close_btn" bindtap='closeModal' src="/images/close_icon.png"></image>
     </view>
-    <view>
-      <input  bindinput='bindKeyInput2' class="phone-input" type="text" placeholder='获取短信验证码'/>
-    </view>
-    <button size="mini" bindtap='sendData'>提交</button>
-    <button size="mini" bindtap='closeModal'>关闭</button>
   </view> 
 </view>

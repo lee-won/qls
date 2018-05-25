@@ -1,4 +1,9 @@
 /* pages/detail/detail.wxss */
+.container{
+  padding:0 24rpx;
+  height:100%;
+  box-sizing: border-box;
+}
 .head{
   display: flex;
   flex-direction: column;
@@ -15,38 +20,118 @@
   font-size: 40rpx;
   color: #000000;
   letter-spacing: 0;
-  margin-top:40rpx;
+  margin: 40rpx 0;
+}
+.content{
+  font-family: PingFangSC-Regular;
+  font-size:28rpx;
 }
 .level{
   font-family: PingFangSC-Regular;
   font-size: 30rpx;
   color: #666666;
   letter-spacing: 0;
-  margin-top:8rpx;
+  margin-bottom:40rpx;
+}
+.file{
+  color:#f60;
+  text-decoration: underline;
+  font-size:28rpx;
+  margin-top:30rpx;
+}
+.select-level{
+  margin-top:40rpx;
+}
+.select-level .buy-tip{
+  display: block;
+  margin-bottom:20rpx;
+}
+.select-level .level-btn{
+  margin-right:40rpx;
+}
+.active{
+  background:#f60;
+  color:#fff;
 }
 .modal{
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  width:100%;
+  background:rgba(0,0,0,0.6);
+  z-index:9999;
+}
+.modal-content{
   position: fixed;
   top:50%;
   left:50%;
   transform: translate3d(-50%,-50%,0);
-  background:#ddd;
-  border-radius:10rpx;
+  background: #FFFFFF;
+  border-radius: 24rpx;
   font-size:14px;
   width:90%;
-  height:200px;
-  padding:40rpx;
+  height:544rpx;
+  padding:36rpx;
   box-sizing: border-box;
 }
 .modal-title{
-  display:block;
-  text-align: center;
   font-family: PingFangSC-Medium;
-  font-size: 32rpx;
-  color: #000000;
-  margin-bottom:20rpx;
+  font-size: 40rpx;
+  color: #333333;
+  letter-spacing: 0;
+  height:56rpx;
+}
+.section{
+  display: block;
+  position:relative;
+  margin-top:32rpx;
+}
+.icon{
+  position:absolute;
+  width:40rpx;
+  height:40rpx;
+  top:22rpx;
+  left:16rpx;
 }
 .phone-input{
-  border:1px solid #f60;
+  background: #F8F8F8;
+  border-radius: 8rpx;
+  height:84rpx;
+  padding-left:72rpx;
+}
+.code_btn{
+  position:absolute;
+  right:16rpx;
+  top:10rpx;
+  background: #E7E7E7;
+  border-radius: 8rpx;
+  width:160rpx;
+  height:64rpx;
+  line-height:64rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 26rpx;
+  color:#999;
+  letter-spacing:0;
+  padding:0 !important;
+  z-index:9999;
+}
+.bind_btn{
+  font-family: PingFangSC-Regular;
+  font-size: 32rpx;
+  color: #FFFFFF;
+  height:80rpx;
+  line-height:80rpx;
+  background:#f60;
+  margin-top:100rpx;
+}
+.close_btn{
+  position:absolute;
+  right:0;
+  top:0;
+  width:16px;
+  height:16px;
+  padding:36rpx;
 }
 .content .outline{
   display:block;
@@ -79,5 +164,5 @@
   line-height: 88rpx;
   background:#f60;
   color:#fff;
-  margin: 42rpx 0 16rpx 0;
+  margin: 42rpx 0 40rpx 0;
 }
