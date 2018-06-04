@@ -10,14 +10,21 @@
         <view class="file" bindtap='downfile' data-url="{{item.attachment}}">相关文档下载<text wx:if="{{desc.level.length > 0}}">({{item.level}})</text></view>
       </block>
     </view>
-  </view>
-  <view class="select-level">
+     <view class="select-level">
     <text class="buy-tip">请选择您需购买的课程等级：</text>
     <block wx:for="{{desc.level}}" wx:key="{{index}}">
       <button size="mini" class="level-btn {{item.level === selectLevel ? 'active': ''}}" data-level="{{item.level}}" bindtap='setLevel'>{{item.level}}</button>
     </block>
   </view>
-  <button bindtap='buy' class="buy-btn">¥{{desc.price}}.00  确认报名</button>
+  </view>
+ 
+  <view class="buy-type"  wx:if="{{!hasBuyFlag}}">
+      <text class="buy-type-item buy-type-item-left" data-buytype="personal" bindtap='goPay'>个人购买</text>
+      <text class="buy-type-item buy-type-item-right" data-buytype="company" bindtap='goPay'>公司团购</text>
+  </view>
+  <view class="buy-type"  wx:else>
+     <view class="buy-type-item">已报名</view>
+  </view>
   <view class="modal" wx:if="{{modalFlag}}">
     <view class="modal-content">
       <text class="modal-title">绑定手机号</text>

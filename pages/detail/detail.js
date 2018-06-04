@@ -1,11 +1,15 @@
 const app = getApp()
 const URL = require('../../common/url_config.js')
-var course_id = ''
+const fetch = require('../../common/fetch.js')
+var course_id = '' 
+
 Page({
   data: {
     id: '',
     desc: null,
+    userStatus: [],
     selectLevel: '',
+    hasBuyFlag: false,
     payFlag: false,
     modalFlag: false,
     phoneNum: '',
@@ -15,17 +19,31 @@ Page({
     basic_url:URL.BASIC_URL
   },
   onLoad: function(options) {
+    if (!app.globalData.token) {
+      wx.login({
+        success: (res) => {
+          wx.request({
+            url: URL.LOGIN_URL,
+            method: 'post',
+            data: {
+              code: res.code,
+            },
+            success: (res) => {
+              app.globalData.token = res.data.token
+            }
+          })
+        }
+      })
+    }
     course_id = options.id
     var that = this
-    wx.request({
-      url: URL.DETAIL_URL + options.id + '/' + app.globalData.token +'/',
-      method: 'POST',
-      success: function(res) {
-        that.setData({
-          id: options.id,
-          desc: res.data.course
-        })
-      }
+    fetch(URL.DETAIL_URL + options.id + '/' + app.globalData.token + '/', 'post', null, (res) =>{
+      that.setData({
+        id: options.id,
+        desc: res.course,
+        userStatus: res.userStatus,
+        hasBuyFlag: res.userStatus.indexOf(1) !== -1 ? true : false
+      })
     })
     wx.showShareMenu({
       withShareTicket: true
@@ -75,68 +93,6 @@ Page({
         // 转发失败
       }
     }
-  },
-  buy: function() {
-    if (this.data.desc.level.length > 0 && this.data.selectLevel === '') {
-      wx.showToast({
-        title: '请选择课程等级',
-        icon: 'none'
-      })
-      return
-    } else if (this.data.selectLevel === ''){
-      this.setData({
-        selectLevel: 'empty'
-      })
-    } 
-    this.setData({
-      modalFlag: !app.globalData.phone
-    })
-    var that = this
-    wx.showLoading({
-      title: '请稍后'
-    })
-   if (app.globalData.phone) {
-      wx.login({
-        success: (res) => {
-          wx.request({
-            url:URL.BUY_URL + course_id + '/' + that.data.selectLevel+ '/' + res.code + '/'+app.globalData.token + '/',
-            method: 'post',
-            success: function (res) {
-              wx.hideLoading()
-              if (res.data.code === 0) {
-                wx.requestPayment({
-                  'timeStamp': res.data.data.timeStamp,
-                  'nonceStr': res.data.data.nonceStr,
-                  'package': res.data.data.package,
-                  'signType': res.data.data.signType,
-                  'paySign': res.data.data.paySign,
-                  'success': function (res) {
-                    wx.showToast({
-                      title: '购买成功',
-                      icon: 'success'
-                    })
-                    setTimeout(() =>{
-                      wx.switchTab({
-                        url: '/pages/order/order'
-                      })
-                    }, 2000) 
-                  },
-                  'fail': function (res) {
-                  }
-                })
-              } else {
-                wx.showToast({
-                  title: res.data.msg,
-                  icon: 'none'
-                })
-              }
-            }
-          })
-        }
-      })
-   }else{
-     return
-   }
   },
   closeModal () {
     this.setData({
@@ -262,5 +218,39 @@ Page({
     this.setData({
       selectLevel: e.currentTarget.dataset.level
     })
+    if (this.data.userStatus.indexOf(this.data.selectLevel) !== -1) {
+      this.setData({
+        hasBuyFlag: true
+      })
+      return
+    } else {
+      this.setData({
+        hasBuyFlag: false
+      })
+      return
+    }
+  },
+  goPay: function(e){
+    if (this.data.desc.level.length > 0 && this.data.selectLevel === '') {
+      wx.showToast({
+        title: '请选择课程等级',
+        icon: 'none'
+      })
+      return
+    } else if (this.data.selectLevel === '') {
+      this.setData({
+        selectLevel: 'empty'
+      })
+    }
+    this.setData({
+      modalFlag: !app.globalData.phone
+    })
+    if (app.globalData.phone && !this.data.hasBuyFlag) {
+    wx.navigateTo({
+      url: '/pages/pay/pay?name=' + this.data.desc.name + '&price=' + this.data.desc.price + '&level=' + this.data.selectLevel + '&buyType=' + e.currentTarget.dataset.buytype + '&id=' + this.data.id
+    })
+    } else {
+      return
+    }
   }
 })

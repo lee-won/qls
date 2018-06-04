@@ -20,6 +20,12 @@ Page({
     this.setData({
       userInfo: app.globalData.userInfo
     })
+    if (options.name) {
+      wx.showToast({
+        title: '您已成功购买《' + options.name + '》这门课程',
+        icon: 'none'
+      })
+    }
     wx.request({
       url: URL.BUY_RECORD_URL + app.globalData.token + '/',
       method: 'GET',
@@ -70,13 +76,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
   
   }
 })

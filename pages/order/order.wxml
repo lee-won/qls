@@ -10,7 +10,7 @@
               <text class="time">{{item.course.buy_time}}</text>
               <text class="level" wx:if="{{item.level}}">课程等级：{{item.level}}</text>
             </view>
-            <view class="price" wx:if="{{!item.status}}">已付款 ¥{{item.fee}}.00元</view>
+            <view class="price" wx:if="{{!item.status}}">已报名</view>
             <view class="price" wx:else>待付款</view>
           </view>
       </navigator>  

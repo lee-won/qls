@@ -67,13 +67,6 @@ Page({
   onReachBottom: function () {
   
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   download: function(e) {
     wx.downloadFile({
       url: URL.BASIC_URL + e.currentTarget.dataset.url, //仅为示例，并非真实的资源

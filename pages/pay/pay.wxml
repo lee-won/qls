@@ -1,0 +1,35 @@
+<!--pages/pay/pay.wxml-->
+<view class="container">
+  <view class="wrapper">
+    <text class="left">课程名称：</text>
+    <text class="right">{{name}}</text>
+  </view>
+  <view class="wrapper">
+    <text class="left">课程价格：</text>
+    <text class="right">{{price}}元</text>
+  </view>
+  <view class="wrapper" wx:if="{{level !== 'empty'}}">
+    <text class="left">购买等级：</text>
+    <text class="right">{{level}}</text>
+  </view>
+  <view class="wrapper"  wx:if="{{buyType === 'company'}}">
+    <text class="left">公司名称：</text>
+    <input type="text"  value="{{company}}" class="company-input"  bindinput="bindCompanyInput" />
+  </view>
+  <view class="wrapper" wx:if="{{buyType === 'company'}}">
+    <text class="left">团报人数：</text>
+    <view class="right">
+      <image src="/images/add.png" class="btn-icon" bindtap='add'></image>
+      <input class="person-num" value="{{personNum}}" type="number"  bindinput="bindNumInput" />
+      <image src="/images/decrease.png" class="btn-icon" bindtap='decrease'></image>
+    </view>
+  </view>
+  <view class="pay-wrapper">
+    <view class="left">
+      <text>总计：{{totalPay}} 元</text>
+    </view>
+    <view class="right">
+      <text bindtap='buy'>确认支付</text>
+    </view>
+  </view>
+</view>

@@ -1,5 +1,9 @@
 <!--pages/classify/classify.wxml-->
 <view class="container">
+  <view class="search" bindtap='goSearch'>
+    <image class="search-icon" mode="aspectFit" src="/images/search_icon.png"></image>
+    <text class="search-input">我想搜索...</text>
+  </view>
   <view class="wrapper">
     <view class="left">
       <view class="left-wrapper">

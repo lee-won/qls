@@ -7,6 +7,7 @@
     "pages/notice/notice",
     "pages/classify/classify",
     "pages/list/list",
+    "pages/pay/pay",
     "pages/logs/logs"
   ],
   "tabBar": {

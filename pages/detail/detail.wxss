@@ -25,6 +25,7 @@
 .content{
   font-family: PingFangSC-Regular;
   font-size:28rpx;
+  margin-bottom:120rpx;
 }
 .level{
   font-family: PingFangSC-Regular;
@@ -158,11 +159,35 @@
   letter-spacing: 0;
   line-height: 48rpx;
 }
-.buy-btn{
-  height:88rpx;
+.buy-type{
+  position:fixed;
+  display: flex;
+  bottom:0;
+  left:0;
   width:100%;
-  line-height: 88rpx;
+  height:88rpx;
+  line-height:88rpx;
+  background:#f60;
+  color:#fff;
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+}
+.buy-type-item{
+  display: block;
+  flex:1;
+  text-align: center;
+  background:#f60;
+  color:#fff;
+}
+.buy-type-item-left{
+  border-right:1px solid #ccc;
+}
+.buy-btn{
+  height:88rpx !important;
+  line-height: 88rpx !important;
   background:#f60;
   color:#fff;
   margin: 42rpx 0 40rpx 0;
+  padding:0;
 }

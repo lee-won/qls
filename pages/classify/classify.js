@@ -65,16 +65,14 @@ Page({
   onReachBottom: function () {
   
   },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  },
   setCurrent: function(e) {
     this.setData({
       type: e.currentTarget.dataset.type
+    })
+  },
+  goSearch: function (e) {
+    wx.navigateTo({
+      url: '../search/search'
     })
   }
 })

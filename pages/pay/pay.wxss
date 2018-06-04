@@ -1,0 +1,83 @@
+/* pages/pay/pay.wxss */
+.container{
+  padding:0 24rpx;
+  width:100%;
+  box-sizing: border-box;
+}
+.wrapper{
+  display: flex;
+  height:80rpx;
+  line-height:80rpx;
+}
+.wrapper .left{
+  flex: 0 0 200rpx;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  text-align: right;
+  padding-right:40rpx;
+  box-sizing: border-box;
+}
+.wrapper .right{
+  flex:1;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  color:#666;
+}
+.pay-wrapper{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:88rpx;
+  line-height:88rpx;
+  display: flex;
+  border-top:1px solid rgba(0,0,0,0.1);
+}
+.pay-wrapper .left{
+  flex:1;
+  text-align: center;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+}
+.pay-wrapper .right{
+  flex:1;
+  text-align: center;
+  background:#f60;
+  color:#fff;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+}
+.pay-wrapper .right text{
+  display: block;
+}
+.company-input{
+  position: relative;
+  border:1px solid rgba(0,0,0,0.2);
+  border-radius:4px;
+  padding-left:20rpx;
+  height:60rpx;
+  top:10rpx;
+  color:#666;
+  font-family: PingFangSC-Regular;
+  font-size: 28rpx;
+  width:100%;
+}
+.btn-icon{
+  position: relative;
+  top:15rpx;
+  display: inline-block;
+  height:50rpx;
+  width:50rpx;
+  padding:0 20rpx;
+  vertical-align: top;
+}
+.person-num{
+  position: relative;
+  top:10rpx;
+  display: inline-block;
+  height:60rpx;
+  width:100rpx;
+  border:1px solid rgba(0,0,0,0.2);
+  border-radius:4px;
+  text-align: center;
+}
